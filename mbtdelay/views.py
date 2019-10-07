@@ -1,3 +1,7 @@
+##### MTBdelay_app -- view.py
+##### (C) Mark Mace 2019
+##### Gets data and makes plot for web-app
+
 #!/home/ubuntu/anaconda3/bin/python
 from flask import Flask, Markup, render_template, request, send_file
 from mbtdelay import app
@@ -34,16 +38,13 @@ import lightgbm as lgb
 
 from mpl_toolkits.axes_grid1 import make_axes_locatable, axes_size
 
-aspect = 20
-pad_fraction = 0.5
-
 # INCLUDE BACKEND FOR APP
 from mbtdelay import my_app
 south_bound=my_app.south_bound
 north_bound=my_app.north_bound
 
-# API KEYS
-MY_DS_KEY='c1f27e675bba344948f6b45dcdd6e7e6'
+# API KEYS -- NEED TO SPECIFY APIs
+from MY_API_KEYS import *
 
 BASE="/Users/mark/Dropbox/INSIGHT/FLASK/WEBAPP/mbtdelay" # LOCAL
 #BASE="/home/ubuntu/application/mbtdelay" # AWS
@@ -119,14 +120,14 @@ def index():
             
             #n_days=2
             
-            input_data,ts_targ=my_app.get_input_data(lat_loc,lon_loc)
+            weather_targ,ts_targ=my_app.get_input_data(lat_loc,lon_loc)
 
-            hour_data=input_data[:,0]
+            hour_data=weather_targ[:,0]
             all_hours=hour_data
-            precip_data=input_data[:,2]
-            temp_data=input_data[:,3]
+            precip_data=weather_targ[:,2]
+            temp_data=weather_targ[:,3]
             
-            loc_delay=loc_model.predict(input_data)
+            loc_delay=loc_model.predict(weather_targ)
             all_temps.append(temp_data)
             all_precip.append(precip_data)
             all_delays.append(loc_delay)
@@ -155,24 +156,38 @@ def index():
         date_targ=my_app.conv_unixts_to_east_dateonlys_plot(ts_targ)
         
         # DUMMY VALUES
-        x=[0]
-        y=[0]
+
         
         # Initialize Python plot
-        fig, ax = plt.subplots(figsize=(9,2.5))
-        plt.style.use('fivethirtyeight')
+        fig, ax = plt.subplots(figsize=(9,2.0))
+        #lt.style.use('fivethirtyeight')
         img = BytesIO()
         
+        # No plot if same station
         if(station1==station2):
+            x = all_hours
+            y_raw = 0.0/60.0
+            y_ph=[1 for i in range(len(x))]
+            df = pd.DataFrame({"x":x,"y":y_ph,"c":y_raw})
+            
+            cmap = plt.cm.binary
+            norm = matplotlib.colors.Normalize(vmin=0, vmax=240.0/60.0)
+            ax.bar(df.x, df.y, align='center', width=1.0, color=cmap(norm(df.c.values)))
+            ax.set_xticks(df.x)
+            plt.xlim([5-0.5,24-0.5])
+            plt.ylim([0,1])
+            plt.xlabel(' ',fontsize=14)
+            plt.tick_params(axis='y',which='both',bottom=False,top=False,labelbottom=False)
+            
+            plt.yticks([])
             plt.title("Select trip origin and destination",fontsize=10)
         
         # Specify values to plot based on values
         if(station1!=station2):
             x = all_hours
             y_raw = tot_head_delay/60.0
-            #y_vals=[bin_delay(i) for i in y_raw]
-            y_fake=[1 for i in range(len(x))]
-            df = pd.DataFrame({"x":x,"y":y_fake,"c":y_raw})
+            y_ph=[1 for i in range(len(x))]
+            df = pd.DataFrame({"x":x,"y":y_ph,"c":y_raw})
             
             cmap = plt.cm.RdYlGn_r
             norm = matplotlib.colors.Normalize(vmin=0, vmax=240.0/60.0)
@@ -186,17 +201,14 @@ def index():
             plt.yticks([])
             sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
             plt.text(27,0.00,"Potential minutes""\n""of delay",rotation=90,fontsize=14,horizontalalignment='center')
-            divider = make_axes_locatable(ax)
-            width = axes_size.AxesY(ax, aspect=1./aspect)
-            pad = axes_size.Fraction(pad_fraction, width)
-            cax = divider.append_axes("right", size=width, pad=pad)
+
 #            plt.colorbar(im, cax=cax)
             plt.colorbar(sm, fraction=0.046, pad=0.04)
 
             plt.title("Trip from "+south_bound[station1][0]+" to "+south_bound[station2][0]+" on "+date_targ,fontsize=14)
 
 
-        plt.tight_layout()
+#        plt.tight_layout()
         plt.savefig(img, format='png')
         img.seek(0)
         plt.clf()

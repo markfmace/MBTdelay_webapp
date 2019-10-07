@@ -84,11 +84,14 @@
         <input type="submit" name="button" value="Forecast"/>
         <br><br>
     </form>
-    
+    </div>
+    <div class="container">
+
     <!-- Python figure -->
     {% if image != None %}
         <img src="data:image/png;base64,{{ image }}">
     {% endif %}
+   
     </div>
 
 </html>

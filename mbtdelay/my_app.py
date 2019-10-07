@@ -1,3 +1,7 @@
+##### MTBdelay_app -- my_app.py
+##### (C) Mark Mace 2019
+##### Model-based processes for web-app
+
 #!/home/ubuntu/anaconda3/bin/python
 from flask import Flask, Markup, render_template, request, send_file
 from mbtdelay import app
@@ -105,17 +109,18 @@ from MY_API_KEYS import *
 BASE="/Users/mark/Dropbox/INSIGHT/FLASK/WEBAPP/mbtdelay" # LOCAL
 #BASE="/home/ubuntu/application/mbtdelay" # AWS
 
+# IMPORT GENERAL DATE-TIME FUNCTIONS
+from mbtdelay.date_time_functions import *
 
+# IMPORT FEATURE ENGINEERING FUNCTIONS
+from mbtdelay.fe_options import *
 
-# CONVERT UNIX (utc) TIMESTAMP TO YYYY-mm-dd HH:MM:SS (EASTERN)
-def conv_unixts_to_east_hms(ts):
-    east=arrow.Arrow.fromtimestamp(ts).to('US/Eastern')
-    return east.format('YYYY-MM-DD HH:mm:ss')
-
+# CONVERT UNIX (utc) TIMESTAMP TO YYYY-mm-dd (EASTERN)
 def conv_unixts_to_east_dateonlys(ts):
     east=arrow.Arrow.fromtimestamp(ts).to('US/Eastern')
     return east.format('YYYY-MM-DD')
 
+# CONVERT UNIX (utc) TIMESTAMP TO MM/DD/YYYY (EASTERN)
 def conv_unixts_to_east_dateonlys_plot(ts):
     east=arrow.Arrow.fromtimestamp(ts).to('US/Eastern')
     return east.format('MM/DD/YYYY')
@@ -125,30 +130,6 @@ def conv_east_to_unixts_dateonly(dt):
     east=arrow.get(dt,'YYYY-MM-DD').replace(tzinfo='US/Eastern')     # NOW HAS TZ ATTACHED
     # RETURN UNIX TIMESTAMP
     return east.timestamp
-
-## CONVERT HUMAN READABLE TO UNIX TIMESTAMP
-# CONVERT YYYY-mm-dd HH:MM:SS (EASTERN) TO UNIX (utc) TIMESTAMP
-def conv_east_to_unixts_hms(dt):
-    east=arrow.get(dt,'YYYY-MM-DD HH:mm:ss').replace(tzinfo='US/Eastern')     # NOW HAS TZ ATTACHED
-    # RETURN UNIX TIMESTAMP
-    return east.timestamp
-
-# RETURNS DAY OF WEEK
-# M-0, Tu-1, W-2, Th-3 F-4 Sa-6 Su-7
-# TAKES YYYY-MM-DD HH:MM:SS RETURNS Day (IN WHATEVER TIMEZONE)
-def get_day_of_week(dt):
-    dtt = arrow.get(dt)
-    return dtt.weekday()
-
-# TAKES UNIX TS RETURNS Day (IN EASTERN/BOSTON)
-def get_day_of_week_east_unix(ts):
-    east=conv_unixts_to_east_hms(ts)
-    return get_day_of_week(east)
-
-# TAKES UNIX TS RETURNS Day (IN UTC)
-def get_day_of_week_utc_unix(ts):
-    utc=conv_unixts_to_utc_hms(ts)
-    return get_day_of_week(utc)
 
 def days(x):
     return int(24*60*60*x)
@@ -161,6 +142,7 @@ def get_hour(dt_str):
 
 def get_month_num(dt_str):
     return dt_str[5:7]
+
 
 # GET AND SAVE WEATHER DATA FROM DARK SKY FOR A GIVEN POSITION AND DATE RANGE
 # DATES ARE DEFINED FOR THE LOCAL TIME
@@ -220,7 +202,6 @@ def get_input_data(lat,long):
                 event_flag=1
                 print("AN EVENT IS OCCURING AT ",full_datetime)
     
-    
         try:
             temp=float(hour_data['temperature'])
         except BaseException:
@@ -228,18 +209,20 @@ def get_input_data(lat,long):
             print(hour_data)
             # USE VALUE FROM PREVIOUS HOUR
             # FILTER FOR VERY RARE OCCASION WHEN API DOESN'T HAVE DATA
+
         try:
             precip_int=float(hour_data['precipIntensity'])
         except BaseException:
             print("NO precipIntensity GIVEN!!")
             print(hour_data)
             # USE VALUE FROM PREVIOUS HOUR
+
         try:
             precip_pro=float(hour_data['precipProbability'])
         except BaseException:
             print("NO precipProbability GIVEN!!")
             print(hour_data)
-        # USE VALUE FROM PREVIOUS HOUR
+            # USE VALUE FROM PREVIOUS HOUR
         
         try:
             precip_acc=float(hour_data['precipAccumulation'])
@@ -257,6 +240,10 @@ def get_input_data(lat,long):
         month=int(get_month_num(norm_time))
         #print("hour ",hour)
         #print("month ",month)
+
+        # FEATURE ENGINEERING OF PRECIPITATION INT AND ACC
+        precip_int=bin_weather(precip_int)
+        precip_acc=bin_weather(precip_acc)
 
 
         #['HOUR_BIN'], ['DOW'], ['MONTH_BIN'],['event'],['PRECIP_INT'], ['PRECIP_ACC'],['PRECIP_PRO'], ['TEMP']]
