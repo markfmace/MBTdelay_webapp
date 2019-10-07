@@ -1,0 +1,49 @@
+,stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,location_type
+7900,70156,70156,Arlington,Arlington - Green Line - Park Street & North,42.351902,-71.070893,0
+7901,70157,70157,Arlington,Arlington - Green Line - Copley & West,42.351902,-71.070893,0
+8074,70176,70176,Beaconsfield,Beaconsfield - Green Line - Park Street & North,42.335809,-71.140841,0
+8075,70177,70177,Beaconsfield,Beaconsfield - Green Line - (D) Riverside,42.335848,-71.140826,0
+8139,70158,70158,Boylston,Boylston - Green Line - Park Street & North,42.352531,-71.064682,0
+8140,70159,70159,Boylston,Boylston - Green Line - Copley & West,42.353214,-71.064545,0
+8174,70178,70178,Brookline Hills,Brookline Hills - Green Line - Park Street & North,42.331238,-71.127012,0
+8175,70179,70179,Brookline Hills,Brookline Hills - Green Line - (D) Riverside,42.331333,-71.126998,0
+8225,70180,70180,Brookline Village,Brookline Village - Green Line - Park Street & North,42.332838,-71.116234,0
+8226,70181,70181,Brookline Village,Brookline Village - Green Line - (D) Riverside,42.332871,-71.116263,0
+8263,70172,70172,Chestnut Hill,Chestnut Hill - Green Line - Park Street & North,42.326633,-71.165299,0
+8264,70173,70173,Chestnut Hill,Chestnut Hill - Green Line - (D) Riverside,42.326654,-71.165316,0
+8358,70154,70154,Copley,Copley - Green Line - Park Street & North,42.349871,-71.078049,0
+8359,70155,70155,Copley,Copley - Green Line - Kenmore & West/(E) Heath Street,42.350126,-71.077376,0
+8556,70166,70166,Eliot,Eliot - Green Line - Park Street & North,42.318957,-71.216776,0
+8557,70167,70167,Eliot,Eliot - Green Line - (D) Riverside,42.319024,-71.216711,0
+8581,70186,70186,Fenway,Fenway - Green Line - Park Street & North,42.345362,-71.104162,0
+8582,70187,70187,Fenway,Fenway - Green Line - (D) Riverside,42.345395,-71.10419,0
+8647,70201,70201,Government Center,Government Center - Green Line - North Station & North,42.359705,-71.059215,0
+8648,70202,70202,Government Center,Government Center - Green Line - Copley & West,42.359705,-71.059215,0
+8697,70203,70203,Haymarket,Haymarket - Green Line - North Station & North,42.363021,-71.05829,0
+8698,70204,70204,Haymarket,Haymarket - Green Line - Copley & West,42.363021,-71.05829,0
+8802,70152,70152,Hynes Convention Center,Hynes Convention Center - Green Line - Park Street & North,42.347888,-71.087903,0
+8803,70153,70153,Hynes Convention Center,Hynes Convention Center - Green Line - Kenmore & West,42.347888,-71.087903,0
+8888,70150,70150,Kenmore,Kenmore - Green Line - Park Street & North,42.348949,-71.095169,0
+8890,71150,71150,Kenmore,Kenmore - Green Line - Park Street & North,42.348949,-71.095169,0
+8965,70209,70209,Lechmere,Lechmere - Green Line - Exit Only,42.370952,-71.077007,0
+8966,70210,70210,Lechmere,Lechmere - Green Line - Copley & West,42.370911,-71.077095,0
+8975,70182,70182,Longwood,Longwood - Green Line - Park Street & North,42.341123,-71.110393,0
+8976,70183,70183,Longwood,Longwood - Green Line - (D) Riverside,42.341143,-71.110447,0
+9089,70168,70168,Newton Highlands,Newton Highlands - Green Line - Park Street & North,42.321687,-71.206063,0
+9090,70169,70169,Newton Highlands,Newton Highlands - Green Line - (D) Riverside,42.321734,-71.206118,0
+9097,70170,70170,Newton Centre,Newton Centre - Green Line - Park Street & North,42.329338,-71.192388,0
+9098,70171,70171,Newton Centre,Newton Centre - Green Line - (D) Riverside,42.329393,-71.19243,0
+9111,70205,70205,North Station,North Station - Green Line - Lechmere,42.365577,-71.06129,0
+9112,70206,70206,North Station,North Station - Green Line - Copley & West,42.365577,-71.06129,0
+9239,70198,70198,Park Street,Park Street - Green Line - (D) Riverside,42.356395,-71.062424,0
+9241,70200,70200,Park Street,Park Street - Green Line - Government Center & North,42.356395,-71.062424,0
+9417,70160,70160,Riverside,Riverside - Green Line - Park Street & North,42.337283,-71.252385,0
+9418,70161,70161,Riverside,Riverside - Green Line - Exit Only,42.337321,-71.252357,0
+9422,70174,70174,Reservoir,Reservoir - Green Line - Park Street & North,42.334916,-71.149064,0
+9423,70175,70175,Reservoir,Reservoir - Green Line - (D) Riverside,42.334954,-71.149079,0
+9545,70207,70207,Science Park,Science Park - Green Line - Lechmere,42.366664,-71.067666,0
+9546,70208,70208,Science Park,Science Park - Green Line - Copley & West,42.366664,-71.067666,0
+9824,70164,70164,Waban,Waban - Green Line - Park Street & North,42.325899,-71.230805,0
+9825,70165,70165,Waban,Waban - Green Line - (D) Riverside,42.325943,-71.23073,0
+9942,70162,70162,Woodland,Woodland - Green Line - Park Street & North,42.333339,-71.244333,0
+9943,70163,70163,Woodland,Woodland - Green Line - (D) Riverside,42.333372,-71.244303,0
