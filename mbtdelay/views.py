@@ -15,7 +15,6 @@ matplotlib.use('Agg')
 
 # GENERAL INCLUSIONS
 import glob
-import pickle
 import requests
 
 
@@ -27,13 +26,6 @@ from datetime import timedelta
 import arrow
 
 # MODEL
-from sklearn import linear_model
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
-from sklearn.preprocessing import RobustScaler
-from sklearn.pipeline import Pipeline
 import lightgbm as lgb
 
 from mpl_toolkits.axes_grid1 import make_axes_locatable, axes_size
