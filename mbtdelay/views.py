@@ -206,7 +206,7 @@ def index():
             plt.colorbar(sm, fraction=0.046, pad=0.04)
 
             plt.title("Trip from "+south_bound[station1][0]+" to "+south_bound[station2][0]+" on "+date_targ,fontsize=14)
-
+            plt.tight_layout()
 
 #        plt.tight_layout()
         plt.savefig(img, format='png')
@@ -227,4 +227,8 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@app.route('/presentation')
+def presentation():
+    return render_template('presentation.html')
 
