@@ -1,5 +1,5 @@
 # MBTdelay_webapp
-MBTdelay_webapp is the web-app interface for the delay forecasting on the MBTA's Green Line. Currently deployed on an AWS EC2 instance. U
+MBTdelay_webapp is the web-app interface for delay forecasting on the MBTA's Green Line using LightGBM based models and DarkSky weather predicitons. Currently deployed on an AWS EC2 instance. 
 
 
 ### Prerequisites
