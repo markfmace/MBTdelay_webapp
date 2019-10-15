@@ -35,9 +35,6 @@ from mbtdelay import my_app
 south_bound=my_app.south_bound
 north_bound=my_app.north_bound
 
-# API KEYS -- NEED TO SPECIFY APIs
-from MY_API_KEYS import *
-
 BASE="/Users/mark/Dropbox/INSIGHT/FLASK/WEBAPP/mbtdelay" # LOCAL
 #BASE="/home/ubuntu/application/mbtdelay" # AWS
 
