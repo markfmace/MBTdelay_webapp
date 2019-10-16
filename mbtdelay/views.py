@@ -144,11 +144,8 @@ def index():
         # GET PREDICITON DATE
         date_targ=my_app.conv_unixts_to_east_dateonlys_plot(ts_targ)
         
-        # DUMMY VALUES
-
-        
         # Initialize Python plot
-        fig, ax = plt.subplots(figsize=(9,2.0))
+        fig, ax = plt.subplots(figsize=(9,2.5))
         #lt.style.use('fivethirtyeight')
         img = BytesIO()
         
@@ -161,9 +158,9 @@ def index():
             
             cmap = plt.cm.binary
             norm = matplotlib.colors.Normalize(vmin=0, vmax=240.0/60.0)
-            ax.bar(df.x, df.y, align='center', width=1.0, color=cmap(norm(df.c.values)))
+            ax.bar(df.x, df.y, align='edge', width=1.0, color=cmap(norm(df.c.values)))
             ax.set_xticks(df.x)
-            plt.xlim([5-0.5,24-0.5])
+            plt.xlim([5,24])
             plt.ylim([0,1])
             plt.xlabel(' ',fontsize=14)
             plt.tick_params(axis='y',which='both',bottom=False,top=False,labelbottom=False)
@@ -180,19 +177,19 @@ def index():
             
             cmap = plt.cm.RdYlGn_r
             norm = matplotlib.colors.Normalize(vmin=0, vmax=240.0/60.0)
-            ax.bar(df.x, df.y, align='center', width=1.0, color=cmap(norm(df.c.values)))
+            ax.bar(df.x, df.y, align='edge', width=1.0, color=cmap(norm(df.c.values)))
             ax.set_xticks(df.x)
-            plt.xlim([5-0.5,24-0.5])
+            plt.xlim([6,23])
             plt.ylim([0,1])
             plt.xlabel('Hour of day',fontsize=14)
             plt.tick_params(axis='y',which='both',bottom=False,top=False,labelbottom=False)
             
             plt.yticks([])
             sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
-            plt.text(27,0.00,"Potential minutes""\n""of delay",rotation=90,fontsize=14,horizontalalignment='center')
+            plt.text(25.0,-0.05,"Potential minutes""\n""of delay",rotation=90,fontsize=14,horizontalalignment='center')
 
 #            plt.colorbar(im, cax=cax)
-            plt.colorbar(sm, fraction=0.046, pad=0.04)
+            plt.colorbar(sm, aspect=8, pad=0.015)
 
             plt.title("Trip from "+south_bound[station1][0]+" to "+south_bound[station2][0]+" on "+date_targ,fontsize=14)
             plt.tight_layout()
